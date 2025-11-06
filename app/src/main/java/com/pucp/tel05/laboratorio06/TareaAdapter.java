@@ -15,10 +15,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-/**
- * Adaptador para mostrar tareas en RecyclerView.
- * Maneja clics para editar y eliminar tareas.
- */
 public class TareaAdapter extends RecyclerView.Adapter<TareaAdapter.TareaViewHolder> {
 
     private List<Task> tareas;
@@ -71,35 +67,29 @@ public class TareaAdapter extends RecyclerView.Adapter<TareaAdapter.TareaViewHol
         void bind(Task tarea) {
             binding.tvTitulo.setText(tarea.getTitulo());
 
-            // Mostrar fecha límite
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault());
-            String fechaFormato = sdf.format(new Date(tarea.getFechaLimite()));
-            binding.tvFecha.setText("Fecha: " + fechaFormato);
+            Date fecha = tarea.getFechaLimite() != null ? tarea.getFechaLimite().toDate() : new Date();
+            String fechaFormato = sdf.format(fecha);
+            binding.tvFecha.setText("📅 Fecha: " + fechaFormato);
 
-            // Mostrar estado
             String estado = tarea.isEstado() ? "✅ Completada" : "⏳ Pendiente";
             binding.tvEstado.setText(estado);
 
-            // Click para editar
             binding.btnEditar.setOnClickListener(v -> {
                 if (editListener != null) {
                     editListener.onEditTarea(tarea);
                 }
             });
 
-            // Click para eliminar
-            binding.btnEliminar.setOnClickListener(v -> {
-                confirmarEliminar(tarea);
-            });
+            binding.btnEliminar.setOnClickListener(v -> confirmarEliminar(tarea));
 
-            // Click en el item para marcar como completada/pendiente
             binding.getRoot().setOnClickListener(v -> {
                 tarea.setEstado(!tarea.isEstado());
                 repository.actualizarTarea(tarea, new TareaRepository.OnTareaOperationCallback() {
                     @Override
                     public void onSuccess(String message) {
                         Toast.makeText(itemView.getContext(), message, Toast.LENGTH_SHORT).show();
-                        bind(tarea); // Actualizar la vista
+                        bind(tarea);
                     }
 
                     @Override

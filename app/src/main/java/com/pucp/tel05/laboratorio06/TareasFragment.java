@@ -36,21 +36,15 @@ public class TareasFragment extends Fragment implements TareaAdapter.OnTareaEdit
 
         repository = new TareaRepository();
 
-        // Configurar RecyclerView
         binding.rvTareas.setLayoutManager(new LinearLayoutManager(requireContext()));
         adapter = new TareaAdapter(tareas, repository, this);
         binding.rvTareas.setAdapter(adapter);
 
-        // Botón para agregar tarea
         binding.btnAddTask.setOnClickListener(v -> agregarNuevaTarea());
 
-        // Cargar tareas al iniciar
         cargarTareas();
     }
 
-    /**
-     * Cargar todas las tareas de Firestore.
-     */
     private void cargarTareas() {
         repository.obtenerTodasLasTareas(new TareaRepository.OnTareasLoadedCallback() {
             @Override
@@ -59,7 +53,6 @@ public class TareasFragment extends Fragment implements TareaAdapter.OnTareaEdit
                 tareas.addAll(tareasCargadas);
                 adapter.notifyDataSetChanged();
 
-                // Mostrar empty state si no hay tareas
                 if (tareas.isEmpty()) {
                     binding.tvEmptyState.setVisibility(View.VISIBLE);
                     binding.rvTareas.setVisibility(View.GONE);
@@ -76,16 +69,13 @@ public class TareasFragment extends Fragment implements TareaAdapter.OnTareaEdit
         });
     }
 
-    /**
-     * Mostrar dialog para agregar una nueva tarea.
-     */
     private void agregarNuevaTarea() {
         TareaDialog.mostrarDialogCrearTarea(requireContext(), tarea -> {
             repository.crearTarea(tarea, new TareaRepository.OnTareaOperationCallback() {
                 @Override
                 public void onSuccess(String message) {
                     Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show();
-                    cargarTareas(); // Recargar lista
+                    cargarTareas();
                 }
 
                 @Override
@@ -103,7 +93,7 @@ public class TareasFragment extends Fragment implements TareaAdapter.OnTareaEdit
                 @Override
                 public void onSuccess(String message) {
                     Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show();
-                    cargarTareas(); // Recargar lista
+                    cargarTareas();
                 }
 
                 @Override
@@ -116,12 +106,15 @@ public class TareasFragment extends Fragment implements TareaAdapter.OnTareaEdit
 
     @Override
     public void onTareaChanged() {
-        cargarTareas(); // Recargar lista cuando algo cambie
+        cargarTareas();
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        if (repository != null) {
+            repository.detenerEscucha();
+        }
         binding = null;
     }
 }

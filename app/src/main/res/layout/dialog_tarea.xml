@@ -3,39 +3,52 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:padding="24dp">
 
     <EditText
         android:id="@+id/etTituloDlg"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="52dp"
         android:hint="Título de la tarea"
         android:inputType="text"
-        android:layout_marginBottom="12dp" />
+        android:layout_marginBottom="16dp"
+        android:padding="14dp"
+        android:background="@drawable/et_bg"
+        android:textColorHint="#CCCCCC" />
 
     <EditText
         android:id="@+id/etDescripcionDlg"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="100dp"
         android:hint="Descripción (opcional)"
         android:inputType="textMultiLine"
-        android:minLines="3"
-        android:layout_marginBottom="12dp" />
+        android:gravity="top"
+        android:layout_marginBottom="16dp"
+        android:padding="14dp"
+        android:background="@drawable/et_bg"
+        android:textColorHint="#CCCCCC" />
 
     <EditText
         android:id="@+id/etFechaDlg"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="52dp"
         android:hint="Fecha límite (dd/MM/yyyy)"
         android:focusable="false"
-        android:layout_marginBottom="12dp" />
+        android:layout_marginBottom="16dp"
+        android:padding="14dp"
+        android:background="@drawable/et_bg"
+        android:textColorHint="#CCCCCC" />
 
     <com.google.android.material.checkbox.MaterialCheckBox
         android:id="@+id/cbEstadoDlg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Marcar como completada"
-        android:layout_marginBottom="12dp" />
+        android:textSize="14sp"
+        android:textColor="#333333"
+        android:layout_marginBottom="8dp"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp" />
 
 </LinearLayout>
 
