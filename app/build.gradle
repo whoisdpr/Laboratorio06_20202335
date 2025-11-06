@@ -24,6 +24,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+
+    buildFeatures {
+        viewBinding true
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_11
         targetCompatibility JavaVersion.VERSION_11
@@ -38,4 +43,28 @@ dependencies {
     testImplementation libs.junit
     androidTestImplementation libs.ext.junit
     androidTestImplementation libs.espresso.core
+
+    // Use Firebase BOM to align versions
+    implementation platform('com.google.firebase:firebase-bom:32.2.0')
+
+    // Firebase dependencies without explicit versions (managed by BOM)
+    implementation 'com.google.firebase:firebase-auth'
+    implementation 'com.google.firebase:firebase-database'
+    implementation 'com.google.firebase:firebase-firestore'
+    implementation 'com.google.firebase:firebase-appcheck-interop'
+
+    implementation 'androidx.recyclerview:recyclerview:1.2.1'
+    implementation 'androidx.navigation:navigation-fragment:2.5.3'
+    implementation 'androidx.navigation:navigation-ui:2.5.3'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel:2.6.1'
+    implementation 'com.google.android.material:material:1.13.0'
+}
+
+
+if (file("${project.projectDir}/src/debug/google-services.json").exists() ||
+    file("${project.projectDir}/src/google-services.json").exists() ||
+    file("${project.projectDir}/google-services.json").exists()) {
+    apply plugin: 'com.google.gms.google-services'
+} else {
+    logger.warn("google-services.json not found in app/; skipping com.google.gms.google-services plugin. Add the file to enable Firebase services.")
 }

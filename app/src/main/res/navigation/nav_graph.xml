@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/tareasFragment">
+
+    <fragment
+        android:id="@+id/tareasFragment"
+        android:name="com.pucp.tel05.laboratorio06.TareasFragment"
+        android:label="Tareas" />
+
+    <fragment
+        android:id="@+id/resumenFragment"
+        android:name="com.pucp.tel05.laboratorio06.ResumenFragment"
+        android:label="Resumen" />
+
+</navigation>
+

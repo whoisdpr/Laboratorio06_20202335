@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <EditText
+        android:id="@+id/etTituloDlg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Título de la tarea"
+        android:inputType="text"
+        android:layout_marginBottom="12dp" />
+
+    <EditText
+        android:id="@+id/etDescripcionDlg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Descripción (opcional)"
+        android:inputType="textMultiLine"
+        android:minLines="3"
+        android:layout_marginBottom="12dp" />
+
+    <EditText
+        android:id="@+id/etFechaDlg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Fecha límite (dd/MM/yyyy)"
+        android:focusable="false"
+        android:layout_marginBottom="12dp" />
+
+    <com.google.android.material.checkbox.MaterialCheckBox
+        android:id="@+id/cbEstadoDlg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Marcar como completada"
+        android:layout_marginBottom="12dp" />
+
+</LinearLayout>
+

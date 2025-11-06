@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "467502353585",
+    "project_id": "laboratorio06-829f6",
+    "storage_bucket": "laboratorio06-829f6.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:467502353585:android:6e06cc400f54e56b316690",
+        "android_client_info": {
+          "package_name": "com.pucp.tel05.laboratorio06"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB5kvbFhyyS_onzOUSulHhJ4vejr82YnUU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
